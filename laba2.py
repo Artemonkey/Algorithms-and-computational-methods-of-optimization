@@ -40,6 +40,7 @@ tab_2 = {
 
 tab_3 = [] # таблица 3(вспомогательная)
 
+# ksi_minus_one = [x for x in f.keys()]
 
 x_k = []
 for i in range(n + 2):
