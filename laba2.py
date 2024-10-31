@@ -40,22 +40,32 @@ for i in range(n - 1):
 
 for i in range(n - 1):
     for i_1 in range(n + 1):
-        a = 0
-        for i_2 in range(a + 2 + i_1):
+        a_2 = 0
+        for i_2 in range(i_1 + 2):
             current_x_k = x_k[len(x_k) - 1][i_2]
             current_ksi_k = ksi_k[i_1][i_2]
             
-            if i_2 == 0 :
+            if i_2 == 0:
                 f_x = 0
             else:
                 f_x = f[current_x_k][f_len-i-2]
             
-            if i_2 == a + 1 + i_1:
+            if i_2 == i_1 + 1:
                 Z_ksi = 0
             else:
-                Z_ksi = f[current_ksi_k][i_1-i-1]
+                if i > 0:
+                    if i_2 == 0:
+                        key = max(tab_3[i-1][(i_1 + 1) * step], key=tab_3[i-1][(i_1 + 1) * step].get)
+                        Z_ksi = tab_3[i-1][(i_1 + 1) * step][key]
+                    else:
+                        if i_2 == 1:
+                            Z_ksi = tab_3[i][(i_1) * step][(i_2-1) * step]
+                        else:
+                            Z_ksi = tab_3[i][(i_1) * step][(i_2-1) * step] - f[x_k[len(x_k) - 1][i_2 - 1]][f_len-i-2]
+                else:
+                    Z_ksi = f[current_ksi_k][-a_2-1]
             
             tab_3[i][(i_1 + 1) * step].update({current_x_k: f_x + Z_ksi})
-        a += 1
+        a_2 += 1
 
 print(tab_3)
