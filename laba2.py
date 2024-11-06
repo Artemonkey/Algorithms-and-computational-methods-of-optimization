@@ -72,19 +72,16 @@ for i in range(n - 1):
             tab_3[i][(i_1 + 1) * step].update({current_x_k: f_x + Z_ksi})
         a += 1
 
-print(tab_3[0])
-print(tab_3[1])
-print(tab_3[2])
-
 # Преобразование второй таблицы
 for i in range(n):
     for ksi in ksi_list:
         if i == 0:
-            tab_2[ksi] = [(f[ksi][n - 1], ksi)] if ksi in tab_2 else [0]
+            tab_2[ksi] = [(f[ksi][n - 1], ksi)] if ksi in f else [(0, 0)]
             continue
         key = max(tab_3[i - 1][ksi], key=tab_3[i - 1][ksi].get)
         tab_2[ksi].append((tab_3[i - 1][ksi][key], key))
 
+print(tab_2)
 # Получение ответа
 max_profit = tab_2[ksi_0][n - 1][0]
 funds_distirbution = []
